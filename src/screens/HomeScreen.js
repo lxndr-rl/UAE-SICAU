@@ -102,7 +102,7 @@ const App = ({ navigation }) => {
       setSearchButton(true);
       setTextCedula(textInput);
       await fetch(
-        `https://api.lxndr.dev/uae/notas/v2/?cedula=${textInput}&analytics=${JSON.stringify(
+        `http://lxndr.local:3000/api//uae/notas/v2/?cedula=${textInput}&analytics=${JSON.stringify(
           deviceInfo
         )}`
       )
@@ -137,7 +137,9 @@ const App = ({ navigation }) => {
     } else if (textInput.length > 5 && !/^\d+$/.test(textInput)) {
       setLoadingData(true);
       setSearchButton(true);
-      await fetch(`https://api.lxndr.dev/util/cedula?nombres=${textInput}`)
+      await fetch(
+        `http://lxndr.local:3000/api//util/cedula?nombres=${textInput}`
+      )
         .then((res) => res.json())
         .then(async (data) => {
           let cedula = data[0].identificacion;
@@ -149,7 +151,7 @@ const App = ({ navigation }) => {
           }
           setTextCedula(cedula);
           await fetch(
-            `https://api.lxndr.dev/uae/notas/v2/?cedula=${cedula}&analytics=${JSON.stringify(
+            `http://lxndr.local:3000/api//uae/notas/v2/?cedula=${cedula}&analytics=${JSON.stringify(
               deviceInfo
             )}`
           )
